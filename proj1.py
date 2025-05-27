@@ -1,14 +1,13 @@
-def toNeg(len: int, num: int) -> str:
-    arr = [0] * len
-    num = num -1
-    i = 0
-    while i < len:
-        arr[i] = (num+1) % 2
-        i += 1
-        num = num // 2
+def toNeg(length: int, num: int) -> str:
+    bin_num = bin(num - 1)[2:]
+    if length < len(bin(num)) - 2:
+        raise Exception("Length is less than the binary representation of the number.")
         
-    return str(arr[::-1])
+    return ("".join('1' if i == '0' else '0' for i in bin_num.zfill(length)))
 
+print(toNeg(int(input("Enter the length of the num: ")), int(input("Enter the number to be converted: "))))
+
+# Bonus Task: Encrypt a file using XOR encryption
 
 def encrypt( key: int):
         file = open("encrypted.txt", "r")
